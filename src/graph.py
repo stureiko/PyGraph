@@ -1,3 +1,6 @@
+import logging
+import sys
+from logging import StreamHandler, Formatter
 from src.node import Node
 from src.edge import Edge
 
@@ -21,14 +24,19 @@ class SingletonMeta(type):
 
 
 class Graph(metaclass=SingletonMeta):
-    # _nodes = []
-    # _edges = []
 
     def __init__(self):
         self._nodes = set()
         self._edges = set()
+        self.logger = logging.getLogger(__name__)
+        self.logger.setLevel(logging.INFO)
+        handler = StreamHandler(stream=sys.stdout)
+        handler.setFormatter(Formatter(fmt='[%(asctime)s %(name)s: %(levelname)s] %(message)s'))
+        self.logger.addHandler(handler)
+        self.logger.info('Create Graph object')
 
     def get_nodes(self):
+        self.logger.info('Return Graph nodes')
         return self._nodes
 
     def add_node(self, n: Node) -> set:
@@ -37,10 +45,13 @@ class Graph(metaclass=SingletonMeta):
         :param n: node
         :return: list of nodes with added node
         """
+        self.logger.info(f'Add node "{n.name}" to Graph')
         self._nodes.add(n)
+        self.logger.info(f'Node "{n.name}" added to Graph')
         return self._nodes
 
     def get_edges(self):
+        self.logger.info('Return Graph edges')
         return self._edges
 
     def add_edge_nodes(self, n_start: Node, n_finish: Node) -> set:
@@ -50,7 +61,10 @@ class Graph(metaclass=SingletonMeta):
         :param n_finish:
         :return: list of edges
         """
-        self._edges.add(Edge(n_start=n_start, n_finish=n_finish))
+        e = Edge(n_start=n_start, n_finish=n_finish, name=n_start.name + '-' + n_finish.name)
+        self.logger.info(f'Add edge "{e.name}" to Graph')
+        self._edges.add(e)
+        self.logger.info(f'Edge "{e.name}" added to Graph')
         return self._edges
 
     def add_edge_edge(self, e: Edge) -> set:
@@ -59,5 +73,7 @@ class Graph(metaclass=SingletonMeta):
         :param e: Edge
         :return: list of edges
         """
+        self.logger.info(f'Add edge "{e.name}" to Graph')
         self._edges.add(e)
+        self.logger.info(f'Edge "{e.name}" added to Graph')
         return self._edges

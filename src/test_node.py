@@ -14,5 +14,6 @@ class TestNode(unittest.TestCase):
         self.assertEqual(self.noneNode.name, 'none')
 # //TODO: Добавить тестирование функционала узла
 
+
 if __name__ == '__main__':
     unittest.main()
