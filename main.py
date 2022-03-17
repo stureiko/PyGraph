@@ -1,8 +1,16 @@
-from src.edge import Edge
 from src.graph import Graph
 from src.node import Node
+from src.edge import Edge
+from src.log_setup import setupLogging
+import logging
 
 if __name__ == '__main__':
+    setupLogging()
+    logger = logging.getLogger(__name__)
+    logger.info('\n')
+    logger.info('*' * 10)
+    logger.info('Start new session')
+
     g = Graph()
     n1 = Node(name='Node_1')
     n2 = Node(name='Node_2')

@@ -1,8 +1,7 @@
 import logging
-import sys
-from logging import StreamHandler, Formatter
 from src.node import Node
 from src.edge import Edge
+import logging.config
 
 
 class SingletonMeta(type):
@@ -24,15 +23,11 @@ class SingletonMeta(type):
 
 
 class Graph(metaclass=SingletonMeta):
-
+    # //TODO: TVP-30: Save nodes to dict and find node by node_id
     def __init__(self):
         self._nodes = set()
         self._edges = set()
         self.logger = logging.getLogger(__name__)
-        self.logger.setLevel(logging.INFO)
-        handler = StreamHandler(stream=sys.stdout)
-        handler.setFormatter(Formatter(fmt='[%(asctime)s %(name)s: %(levelname)s] %(message)s'))
-        self.logger.addHandler(handler)
         self.logger.info('Create Graph object')
 
     def get_nodes(self):
@@ -77,3 +72,7 @@ class Graph(metaclass=SingletonMeta):
         self._edges.add(e)
         self.logger.info(f'Edge "{e.name}" added to Graph')
         return self._edges
+
+    def print_graph(self):
+        # //TODO: TVP-17: Create function to create graph image and export it to pdf
+        pass

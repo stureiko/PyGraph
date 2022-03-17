@@ -12,7 +12,7 @@ class TestNode(unittest.TestCase):
 
     def test_noneNode(self):
         self.assertEqual(self.noneNode.name, 'none')
-# //TODO: Добавить тестирование функционала узла
+# //TODO: TVP-27: Добавить тестирование функционала узла
 
 
 if __name__ == '__main__':
