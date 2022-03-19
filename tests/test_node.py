@@ -1,17 +1,14 @@
 import unittest
-
-
 from src.node import Node
 
 
 class TestNode(unittest.TestCase):
+    def setUp(self) -> None:
+        self.none_node = Node()
 
-    # setUp method is overridden from the parent class TestCase
-    def setUp(self):
-        self.noneNode = Node()
+    def test_none_node_name(self):
+        self.assertEqual(self.none_node.name, 'none')
 
-    def test_noneNode(self):
-        self.assertEqual(self.noneNode.name, 'none')
 # //TODO: TVP-27: Добавить тестирование функционала узла
 
 

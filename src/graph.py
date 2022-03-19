@@ -74,5 +74,5 @@ class Graph(metaclass=SingletonMeta):
         return self._edges
 
     def print_graph(self):
-        # //TODO: TVP-17: Create function to create graph image and export it to pdf
+        # //TODO: TVP-17: Create function to prepare graph image and export it to pdf
         pass
