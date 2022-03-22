@@ -1,4 +1,7 @@
 import logging
+import matplotlib
+import matplotlib.pyplot as plt
+
 from src.node import Node
 from src.edge import Edge
 import logging.config
@@ -74,5 +77,16 @@ class Graph(metaclass=SingletonMeta):
         return self._edges
 
     def print_graph(self):
-        # //TODO: TVP-17: Create function to prepare graph image and export it to pdf
-        pass
+        # plot the data
+        fig = plt.figure()
+        ax = fig.add_subplot(1, 1, 1)
+        ax.axis('off')
+
+        for e in self.get_edges():
+            e.print_edge(ax=ax, show_caption=True, show_arrow=False)
+
+        for n in self.get_nodes():
+            n.print_node(ax=ax, show_caption=True)
+
+        plt.show()
+        fig.savefig('export/line_plot.pdf')
