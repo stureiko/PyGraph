@@ -3,8 +3,11 @@ from src.node import Node
 from src.edge import Edge
 from src.log_setup import setupLogging
 import logging
+import os
 
 if __name__ == '__main__':
+    if not os.path.exists('logs/'):
+        os.mkdir('logs')
     setupLogging()
     logger = logging.getLogger(__name__)
     logger.info('\n')
