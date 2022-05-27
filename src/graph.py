@@ -2,6 +2,7 @@ import logging
 from src.node import Node
 from src.edge import Edge
 import logging.config
+import matplotlib.pyplot as plt
 
 
 class SingletonMeta(type):
@@ -74,5 +75,13 @@ class Graph(metaclass=SingletonMeta):
         return self._edges
 
     def print_graph(self):
-        # //TODO: TVP-17: Create function to prepare graph image and export it to pdf
-        pass
+        fig = plt.figure()
+        ax = fig.add_subplot(1, 1, 1)
+        ax.axis('off')
+        self.logger.info(f'Print Graph')
+        print(ax)
+        for e in self._edges:
+            e.show_edge(ax=ax)
+
+        plt.savefig("myImagePDF.pdf")
+        plt.show()
