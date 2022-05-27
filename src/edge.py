@@ -34,4 +34,4 @@ class Edge:
                  self.n_finish.y - self.n_start.y,
                  linewidth=1,
                  head_length=0, head_width=0, color='r', linestyle='-')
-        print(ax)
+

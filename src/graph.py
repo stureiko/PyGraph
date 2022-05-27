@@ -79,7 +79,6 @@ class Graph(metaclass=SingletonMeta):
         ax = fig.add_subplot(1, 1, 1)
         ax.axis('off')
         self.logger.info(f'Print Graph')
-        print(ax)
         for e in self._edges:
             e.show_edge(ax=ax)
 
